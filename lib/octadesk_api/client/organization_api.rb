@@ -12,11 +12,6 @@ module OctadeskApi
         response.parsed_response
       end
 
-      def find_by_email(email)
-        response = client.get("/organizations/#{id}")
-        response.parsed_response
-      end
-
       def where(options = {})
         response = client.get("/organizations", options)
         response.parsed_response
