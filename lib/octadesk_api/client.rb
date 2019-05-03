@@ -8,7 +8,7 @@ module OctadeskApi
     def initialize access_token = nil
       @access_token = access_token || OctadeskApi.access_key || ENV['OCTADESK_ACCESS_TOKEN']
       raise OctadeskApi::MissingTokenError unless @access_token
-      self.class.default_options.merge!(headers: { 'Authorization' => "Bearer #{access_token}", 'Content-Type' => 'application/json', verify: OctadeskApi.production? } )
+      self.class.default_options.merge!(headers: { 'Authorization' => "Bearer #{access_token}", 'Content-Type' => 'application/json'}, {verify: OctadeskApi.production? } )
     end
 
     def perform_request(path)
