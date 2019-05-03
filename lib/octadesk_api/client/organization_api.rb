@@ -1,33 +1,34 @@
+
 module OctadeskApi
   class Client
-    class PersonApi
+    class OrganizationApi
       attr_accessor :client
       def initialize(client)
         self.client = client
       end
 
       def find(id) 
-        response = client.get("/persons/#{id}")
+        response = client.get("/organizations/#{id}")
         response.parsed_response
       end
 
       def find_by_email(email)
-        response = client.get("/persons/", {query: {email: email} })
+        response = client.get("/organizations/#{id}")
         response.parsed_response
       end
 
       def where(options = {})
-        response = client.post("/persons/filter", options)
+        response = client.get("/organizations", options)
         response.parsed_response
       end
 
       def create(options = {})
-        response = client.post("/persons", options)
+        response = client.post("/organizations", options)
         response.parsed_response
       end
 
       def update(id, options = {})
-        response = client.put("/persons/#{id}", options)
+        response = client.put("/organizations/#{id}", options)
         response.parsed_response
       end
     end
