@@ -1,43 +1,59 @@
 # OctadeskApi
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/octadesk_api`. To experiment with that code, run `bin/console` for an interactive prompt.
+Gem para comunicação com o www.octadesk.com
 
-TODO: Delete this and the text above, and describe your gem
+## Instalação
 
-## Installation
-
-Add this line to your application's Gemfile:
+Adicionar esta linha ao seu arquivo Gemfile
 
 ```ruby
 gem 'octadesk_api'
 ```
 
-And then execute:
+e então rodar o comando
 
-    $ bundle
+    $ bundle install
 
-Or install it yourself as:
+Para apenas instalar
 
     $ gem install octadesk_api
 
-## Usage
 
-TODO: Write usage instructions here
+## Configurar
+Adicionar a variavel de ambiente
+```ruby
+ENV['OCTADESK_ACCESS_TOKEN']
+```
+Ou
+```ruby
+OctadeskApi::Client.new(access_token)
+``` 
+Ou
+```ruby
+OctadeskApi.access_token = 'token'
+```
+## Como Usar?
 
-## Development
+### Cliente
+```ruby
+client = OctadeskApi::Client.new('token')
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Pessoas
+```ruby
+client = OctadeskApi::Client.new('token')
+client.persons.find(id)
+client.persons.find_by_email('email@email.com.br')
+client.persons.where({email: 'email@email.com.br'})
+client.persons.create({name: 'Pessoa', email: 'email@email.com.br'})
+client.persons.update({name: 'Pessoa Nome', email: 'email@email.com.br'})
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/octadesk_api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the OctadeskApi project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/octadesk_api/blob/master/CODE_OF_CONDUCT.md).
+### Organização
+```ruby
+client = OctadeskApi::Client.new('token')
+client.organizations.find(id)
+client.organizations.where({name: 'Name'})
+client.organizations.create({name: 'Pessoa'})
+client.organizations.update('id', {name: 'Pessoa Nome'})
+```
