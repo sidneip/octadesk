@@ -49,6 +49,20 @@ client.persons.create({name: 'Pessoa', email: 'email@email.com.br'})
 client.persons.update({name: 'Pessoa Nome', email: 'email@email.com.br'})
 ```
 
+#### Cadastrando novos usuarios
+```ruby
+client = OctadeskApi::Client.new(ENV['OCTADESK_ACCESS_TOKEN'])
+client.persons.create({
+email: 'email@emailcom.br',
+phoneContacts: {
+    number: '99123-1234'
+},
+organization: {
+    name: 'new client'
+}
+})
+``` 
+
 ### Organização
 ```ruby
 client = OctadeskApi::Client.new('token')
