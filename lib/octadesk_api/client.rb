@@ -1,4 +1,5 @@
 require 'octadesk_api/client/person_api'
+require 'octadesk_api/client/ticket_api'
 require 'octadesk_api/client/organization_api'
 require 'octadesk_api/errors'
 module OctadeskApi
@@ -8,7 +9,7 @@ module OctadeskApi
     def initialize access_token = nil
       @access_token = access_token || OctadeskApi.access_key || ENV['OCTADESK_ACCESS_TOKEN']
       raise OctadeskApi::MissingTokenError unless @access_token
-      self.class.default_options.merge!(headers: { 'Authorization' => "Bearer #{access_token}", 'Content-Type' => 'application/json'}, verify: OctadeskApi.production? )
+      self.class.default_options.merge!(headers: { 'Authorization' => "Bearer #{@access_token}", 'Content-Type' => 'application/json'}, verify: OctadeskApi.production? )
     end
 
     def perform_request(path)
@@ -22,6 +23,10 @@ module OctadeskApi
 
     def organizations
       @organizations_client ||= OrganizationApi.new(self)
+    end
+
+    def tickets
+      @tickets_client ||= TicketApi.new(self)
     end
     
     def get(path, options  = {})
