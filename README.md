@@ -31,6 +31,7 @@ OctadeskApi::Client.new(access_token)
 Ou
 ```ruby
 OctadeskApi.access_token = 'token'
+OctadeskApi.env = 'production'
 ```
 ## Como Usar?
 
@@ -71,3 +72,17 @@ client.organizations.where({name: 'Name'})
 client.organizations.create({name: 'Pessoa'})
 client.organizations.update('id', {name: 'Pessoa Nome'})
 ```
+
+### Tickets
+```ruby
+client = OctadeskApi::Client.new
+client.tickets.find(id)
+client.tickets.where({idRequester: "123"})
+client.tickets.create({params})
+client.tickets.update(ticket_id, {params})
+```
+
+# Para saber mais sobre o body das requisições consulte a documentação
+[Octadesk Api Documentação](https://api.octadesk.services/)
+[RubyGems](https://rubygems.org/gems/octadesk_api)
+
