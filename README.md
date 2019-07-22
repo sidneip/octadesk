@@ -82,7 +82,7 @@ client.tickets.create({params})
 client.tickets.update(ticket_id, {params})
 ```
 
-# Para saber mais sobre o body das requisições consulte a documentação
-[Octadesk Api Documentação](https://api.octadesk.services/)
+# Para saber mais sobre o body das requisições consulte a documentação do octadesk
+[Octadesk Api Documentação](https://api.octadesk.services/)  
 [RubyGems](https://rubygems.org/gems/octadesk_api)
 
